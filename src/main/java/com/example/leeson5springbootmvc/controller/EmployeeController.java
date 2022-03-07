@@ -82,7 +82,5 @@ public class EmployeeController {
         employeeRepositary.save(employee1);
         return "redirect:/employee";
     }
-
-
 }
 
