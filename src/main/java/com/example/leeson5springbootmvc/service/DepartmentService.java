@@ -21,7 +21,7 @@ public class DepartmentService {
 
     public ApiResponce add(DepartmentDTO departmentDTO) {
         Optional<Company> optionalCompany = companyRepository.findById(departmentDTO.getCompanyId());
-        if (optionalCompany.isEmpty()) return new ApiResponce("Bunaqa id yoq", false);
+        if (optionalCompany.isPresent()) return new ApiResponce("Bunaqa id yoq", false);
         Company company = optionalCompany.get();
 
         Department department = new Department();
@@ -35,7 +35,7 @@ public class DepartmentService {
     public ApiResponce edit(DepartmentDTO dto , Integer id){
         Optional<Company> companyId = companyRepository.findById(dto.getCompanyId());
         Company company = new Company();
-        if (companyId.isEmpty()) {
+        if (companyId.isPresent()) {
             return new ApiResponce("Bunday Id yo'q!!!", false);
         }
         company=companyId.get();

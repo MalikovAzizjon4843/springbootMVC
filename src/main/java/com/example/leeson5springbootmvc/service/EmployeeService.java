@@ -27,7 +27,7 @@ public class EmployeeService {
     public ApiResponce add(EmployeeDto employeeDto) {
         Optional<Department> optionalDepartment = departmentRepositary.findById(employeeDto.getDepartmentId());
 
-        if (optionalDepartment.isEmpty()) return new ApiResponce("Bunaqa id yoq", false);
+        if (optionalDepartment.isPresent()) return new ApiResponce("Bunaqa id yoq", false);
         Department department = optionalDepartment.get();
 
         Employee employee = new Employee();
@@ -41,7 +41,7 @@ public class EmployeeService {
     public ApiResponce edit(EmployeeDto dto, Integer id) {
         Optional<Department> departmentId = departmentRepositary.findById(dto.getDepartmentId());
         Department department = new Department();
-        if (departmentId.isEmpty()) {
+        if (departmentId.isPresent()) {
             return new ApiResponce("Bunday Id yo'q!!!", false);
         }
         department = departmentId.get();
